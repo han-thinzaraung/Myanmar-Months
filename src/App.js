@@ -4,6 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import MonthDetails from './MonthDetails';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom/cjs/react-router-dom.min';
+import Footer from './Footer';
 
 function App() {
   return (
@@ -17,7 +18,8 @@ function App() {
             <MonthDetails />
           </Route>
         </Switch>
-      </div>
+        <Footer/>
+    </div>
   </Router>
   );
 }

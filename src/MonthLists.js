@@ -23,13 +23,14 @@ function MonthLists() {
     const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className="container-fluid px-5 py-3" id="months">
+        <div className="container-fluid px-5 py-3 mt-5" id="months">
+            <h3 className='mb-5'>မြန်မာလ အသေးစိတ်များ</h3>
             <div className="row flex-nowrap overflow-auto">
                 {currentMonths.map(month => (
                     <div className="col-md-3 mb-4" key={month.id}>
-                        <div className="card text-secondary">
-                        <Link to={`/months/${month.id}`}> <img src={process.env.PUBLIC_URL + '/' + month.ImagePath} className="card-img-top small-image" alt="Month" /></Link>
-                            <div className="card-body shadow rounded-5">
+                        <div className="card text-secondary border-0">
+                        <Link to={`/months/${month.id}`}> <img src={process.env.PUBLIC_URL + '/' + month.ImagePath} className="card-img-top small-image rounded-3" alt="Month" /></Link>
+                            <div className="card-body shadow rounded-3">
                                 <h5 className="card-title">{month.MonthMm}</h5>
                                 <p className="card-text">{month.MonthEn}</p>
                             </div>
@@ -38,7 +39,7 @@ function MonthLists() {
                 ))}
             </div>
             <nav>
-                <ul className="pagination justify-content-center">
+                <ul className="pagination justify-content-center ">
                     {Array.from({ length: Math.ceil(months.length / monthsPerPage) }, (_, i) => (
                         <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`}>
                             <button onClick={() => paginate(i + 1)} className="page-link">{i + 1}</button>

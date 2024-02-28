@@ -1,6 +1,5 @@
 import { useHistory, useParams } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
-import { FaTrash } from "react-icons/fa";
 import { FaArrowAltCircleLeft } from "react-icons/fa";
 
 const MonthDetails = () => {
@@ -22,32 +21,22 @@ const MonthDetails = () => {
         history.goBack(); // Go back to the previous page
     };
     return (
-        <div className="container-fluid px-5">
+        <div className="container-fluid px-5 py-3">
             {isPending && <div>Loading...</div>}
             {error && <div>{error}</div>}
             {month && (
-                <div className="row d-flex justify-content-center align-items-center p-5">
-                    <div className="col-md-4">
-                        <div className="card shadow rounded-5">
-                            <img src={process.env.PUBLIC_URL + '/' + month.ImageDetail} className="card-img-top rounded-5" alt="month" />
-                        </div>
+                 <div className='row'>
+                    <h3 className="mb-5 mt-5">{month.MonthMm}<span className="text-uppercase">({month.MonthEn})</span></h3>
+                    <h3 className="mb-5">{month.FestivalMm}<span className="text-uppercase">({month.FestivalEn})</span></h3>
+                    <div className="col-md-6">
+                        <div className="card mb-3">
+                            <img src={process.env.PUBLIC_URL + '/' + month.ImageDetail} className="card-img-top" alt="month" />
+                        </div> 
+                        <p className="mb-3 text-start custom-line-height ">{month.Description}</p>
+                        <button className="btn btn-outline-dark " onClick={handleBack}><FaArrowAltCircleLeft /></button>
                     </div>
-                    <div className="col-md-8 ">
-                        <div className="card bg-secondary shadow rounded-5">
-                            <div className="card-body text-white">
-                                <h5 className="card-title mb-3">{month.MonthMm}</h5>
-                                <p className="card-text mb-3">{month.MonthEn}</p>
-                                <p className="card-text mb-3">{month.FestivalMm}</p>
-                                <p className="card-text mb-3">{month.FestivalEn}</p>
-                                <p className="card-text mb-3">{month.Description}</p>
-                                <p className="card-text mb-3">{month.Detail}</p>
-                                <p className="card-text px-3">{month.Description}</p>
-                                <div className="d-flex justify-content-around mt-3">
-                                    <button className="btn btn-dark custom-icon" onClick={handleBack}><FaArrowAltCircleLeft /></button>
-                                    <button className="btn btn-dark custom-icon" onClick={handleClick}><FaTrash/></button>
-                                </div>
-                            </div>
-                        </div>
+                    <div className="col-md-6">
+                        <p className="mb-3 text-start custom-line-height ">{month.Detail}</p>
                     </div>
                 </div>
             )}
