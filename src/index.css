@@ -5,19 +5,77 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-.small-image {
-  width: 200px;
-  height: 200px;
+
+@media (min-width: 768px){
+  .small-image {
+    width: 300px;
+    height: 270px;
+    padding: 30px;
+  }
 }
+
+@media (max-width: 768px){
+
+  .small-image {
+    width: 100%;
+    height: 200px;
+  }
+}
+
 .custom-line-height {
   line-height: 2; 
 }
-.carousel-item img {
-  height: 600px;
+/* For medium-sized screens (md) and larger */
+@media (min-width: 768px) {
+  .carousel-image {
+      height: 100%; /* Set the height for medium-sized screens */
+      width:100%;
+  }
+}
+
+/* For small screens */
+@media (max-width: 767px) {
+  .carousel-image {
+      height: auto; /* Allow the height to be responsive in small screens */
+  }
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+ 
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+ 
+
+ 
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity here */
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.card:hover .overlay {
+  opacity: 0.7;
 }
