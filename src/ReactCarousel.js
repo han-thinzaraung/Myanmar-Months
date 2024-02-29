@@ -1,13 +1,16 @@
-import Carousel from 'react-multi-carousel';
-import 'react-multi-carousel/lib/styles.css';
-import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
-const ReactCarousel = (props) => {
+
+function MonthLists() {
+
     const [months, setMonths] = useState([]);
+    const [currentPage, setCurrentPage] = useState(1);
+    const monthsPerPage = 4;
+
 
     useEffect(() => {
-        fetch('https://months-json.vercel.app/Tbl_Months/')
+        fetch('https://months-json.vercel.app/Tbl_Months')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -16,59 +19,47 @@ const ReactCarousel = (props) => {
             .catch(error => console.log('Error fetching Months data:', error));
     }, []);
 
-    const responsive = {
-        desktop: {
-            breakpoint: { max: 3000, min: 1024 },
-            items: 3,
-            slidesToSlide: 1 // optional, default to 1.
-        },
-        tablet: {
-            breakpoint: { max: 1024, min: 464 },
-            items: 2,
-            slidesToSlide: 2 // optional, default to 1.
-        },
-        mobile: {
-            breakpoint: { max: 464, min: 0 },
-            items: 1,
-            slidesToSlide: 1 // optional, default to 1.
-        }
-    };
+    const indexOfLastMonth = currentPage * monthsPerPage;
+    const indexOfFirstMonth = indexOfLastMonth - monthsPerPage;
+    const currentMonths = months.slice(indexOfFirstMonth, indexOfLastMonth);
+
+    const paginate = pageNumber => setCurrentPage(pageNumber);
 
     return (
-        <div className='container-fluid px-5 py-3 mt-5'>
-            <h3 className='mb-5 text-secondary'>မြန်မာ လ အသေးစိတ်များ</h3>
-            <Carousel
-                swipeable={false}
-                draggable={false}
-                responsive={responsive}
-                infinite={true}
-                autoPlay={props.deviceType !== "mobile" ? true : false}
-                autoPlaySpeed={1000}
-                keyBoardControl={true}
-                transitionDuration={500}
-                containerClass="carousel-container"
-                removeArrowOnDeviceType={["tablet", "mobile"]}
-                deviceType={props.deviceType}
-                dotListClass="custom-dot-list-style"
-                itemClass="carousel-item-padding-40-px"
-            >
-                {months.map(month => (
-                    <div className="card mx-4" key={month.id}>
-                        <Link to={`/months/${month.id}`}>
-                            <img src={process.env.PUBLIC_URL + '/' + month.ImagePath} className="img-top small-image" alt="Month" />
+        <div className="container-fluid px-5 py-3 mt-5" id="months">
+            <h3 className='mb-5 text-dark'>မြန်မာလ အသေးစိတ်များ</h3>
+            {/* <div className='row mb-3'>
+                <CoverFlow imagesArr={imagesArr} />
+            </div> */}
 
-                            <div className="overlay">
-                                <div className="card-body text-center bg-dark">
-                                    <h6 className="card-title text-light mb-0">{month.MonthMm}</h6>
-                                    <h5 className="card-title text-light mb-0">{month.MonthEn}</h5>
-                                </div>
+            <div className="row flex-nowrap overflow-auto">
+                {currentMonths.map(month => (
+
+                    <div className="col-md-3 mb-4" key={month.id} data-aos="zoom-in">
+                        <div className="card border-0 rounded-4 shadow">
+                            <div className='card-body'>
+                            <Link to={`/months/${month.id}`}> <img src={process.env.PUBLIC_URL + '/' + month.ImagePath} className="card-img-top small-image rounded-4" alt="Month" /></Link>
+                            <div className="rounded-4 py-5 overlay">
+                                <h5 className="text-white">{month.MonthMm}</h5>
+                                <h6 className="text-white">{month.MonthEn}</h6>
                             </div>
-                        </Link>
+                            </div>
+                        </div>
                     </div>
+
                 ))}
-            </Carousel>
-        </div >
+            </div>
+            <nav>
+                <ul className="pagination justify-content-center ">
+                    {Array.from({ length: Math.ceil(months.length / monthsPerPage) }, (_, i) => (
+                        <li key={i} className={`page-item ${i + 1 === currentPage ? 'active' : ''}`}>
+                            <button onClick={() => paginate(i + 1)} className="page-link">{i + 1}</button>
+                        </li>
+                    ))}
+                </ul>
+            </nav>
+        </div>
     );
 }
 
-export default ReactCarousel;
+export default MonthLists;

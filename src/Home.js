@@ -1,5 +1,4 @@
 import MonthLists from "./MonthLists";
-import ReactCarousel from "./ReactCarousel";
 import month1 from "./month2.jpg";
 import month2 from "./month5.jpeg";
 
@@ -77,7 +76,7 @@ const Home = () => {
             </div>
 
 
-            <ReactCarousel />
+            <MonthLists/>
         </div>
     );
 }
