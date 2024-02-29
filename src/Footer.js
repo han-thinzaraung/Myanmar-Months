@@ -13,7 +13,7 @@ const Footer = () => {
                     <IoLogoInstagram className="mx-2"/>
                     <FaPinterest className="mx-2"/>
                     <FaTwitter className="mx-2"/>
-                <p className="text-center py-3 text-secondary ">Copyright ©2024 All rights reserved | This template is made with by Myanmar Months.</p>
+                <p className="text-center py-3 text-secondary ">Copyright ©2024 All rights reserved | This template is made by HTZA GIC Co.,Ltd.</p>
             </div>
         </>
     );
