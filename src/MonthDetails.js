@@ -6,9 +6,9 @@ const MonthDetails = () => {
     const history = useHistory();
     const { id } = useParams();
     // console.log(id);
-    const { data: month, error, isPending } = useFetch('https://months-json.vercel.app/' + id);
+    const { data: month, error, isPending } = useFetch('https://months-json.vercel.app/Tbl_Months/' + id);
     const handleClick = () => {
-        fetch('https://months-json.vercel.app/' + month.id, {
+        fetch('https://months-json.vercel.app/Tbl_Months/' + month.id, {
             method: 'DELETE'
         }).then(() => {
             history.push('/');

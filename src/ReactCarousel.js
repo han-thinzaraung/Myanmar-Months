@@ -7,7 +7,7 @@ const ReactCarousel = (props) => {
     const [months, setMonths] = useState([]);
 
     useEffect(() => {
-        fetch('https://months-json.vercel.app')
+        fetch('https://months-json.vercel.app/Tbl_Months/')
             .then(response => response.json())
             .then(data => {
                 console.log(data);
