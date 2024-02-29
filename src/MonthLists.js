@@ -36,7 +36,7 @@ const ReactCarousel = (props) => {
 
     return (
         <div className='container-fluid px-5 py-3 mt-5'>
-            <h3 className='mb-5 text-secondary'>မြန်မာ လ အသေးစိတ်များ</h3>
+            <h3 className='mb-5 text-dark'>မြန်မာ လ အသေးစိတ်များ</h3>
             <Carousel
                 swipeable={false}
                 draggable={false}
