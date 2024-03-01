@@ -103,3 +103,6 @@ code {
   border-radius: 50%;
   animation: floatingAnimation 3s ease-in-out infinite;
 }
+.loading{
+  height: 100vh;
+}

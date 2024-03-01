@@ -22,7 +22,7 @@ const MonthDetails = () => {
     };
     return (
         <div className="container-fluid px-5 py-3">
-            {isPending && <div>Loading...</div>}
+            {isPending && <div className="loading">Loading...</div>}
             {error && <div>{error}</div>}
             {month && (
                  <div className='row'>
